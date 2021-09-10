@@ -1,16 +1,15 @@
 import csv
-import os
 
 from app import db
-from apps.models.pokemon import Pokemon
+from models.pokemon import Pokemon
+from utils.paths import CSV_PATH
 
 
-def load_data(csv_name):
+def load_data():
     """
     Read the csv file and save the data in DB
-    :param csv_name: The name of file in root path project
     """
-    csv_name = os.path.abspath(os.path.join(__file__, '..', '..', '..', csv_name))
+    csv_name = CSV_PATH
     column_names = True
     with open(csv_name) as csv_file:
         csv_reader = csv.reader(csv_file, delimiter=',')
@@ -40,5 +39,4 @@ def load_data(csv_name):
 
 db.create_all()
 
-file_name = 'pokemon.csv'
-load_data(file_name)
+load_data()
