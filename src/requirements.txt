@@ -1,2 +1,4 @@
-Flask
+Flask~=2.0.1
 Flask-classy
+SQLAlchemy~=1.4.23
+Flask-Sqlalchemy
