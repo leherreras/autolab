@@ -1,6 +1,7 @@
 import json
 import logging
 
+import flask_login
 from flask import jsonify, request
 from flask_classy import FlaskView, route
 
@@ -8,6 +9,7 @@ from .controller import pokemons
 
 
 class PokemonView(FlaskView):
+    decorators = [flask_login.login_required]
 
     @route('/', methods=['GET', 'POST'])
     def pokemons(self):
