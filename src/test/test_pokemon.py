@@ -19,7 +19,7 @@ class PokemonTestCase(unittest.TestCase):
     def tearDown(self):
         """teardown all initialized variables."""
         with self.app.app_context():
-            # Elimina todas las tablas de la base de datos
+            # Delete all tables in dbs
             db.session.remove()
             db.drop_all()
 
