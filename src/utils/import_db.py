@@ -37,6 +37,6 @@ def load_data():
     db.session.commit()
 
 
-db.create_all()
-
-load_data()
+if __name__ == '__main__':
+    db.create_all()
+    load_data()
