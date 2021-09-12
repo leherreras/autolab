@@ -3,6 +3,7 @@ import os
 
 from flask import Flask, jsonify
 from flask_login import LoginManager
+from werkzeug.exceptions import HTTPException
 
 from routes import create_routes
 from utils.conn_db import conn
@@ -22,6 +23,21 @@ db = conn(app)
 
 # create all routes
 create_routes(app)
+
+
+@app.errorhandler(HTTPException)
+def handle_exception(e):
+    """Return JSON instead of HTML for HTTP errors."""
+    # start with the correct headers and status code from the error
+    # response = e.get_response()
+    # replace the body with JSON
+    data = {
+        "code": e.code,
+        "name": e.name,
+        "description": e.description,
+    }
+    return jsonify(data), e.code
+
 
 
 @app.route('/')
